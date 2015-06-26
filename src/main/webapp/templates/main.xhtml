@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:loadBundle basename="messages" var="msg" />
+
+    <f:view contentType="text/html" encoding="UTF-8">
+
+        <h:head>
+
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="description" content="Trabajo de título Valery Soto Lastra" />
+            <meta name="author" content="Valery Soto Lasta" />
+
+            <title>${msg.titulo}</title>
+
+            <!-- Bootstrap -->
+            <h:outputStylesheet library="valery" name="css/bootstrap.css" />
+            <h:outputScript library="valery" name="js/bootstrap.min.js" />
+
+            <!-- Custom CSS -->
+            <style>
+                body {
+                    padding-top: 70px;
+                    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+                }
+            </style>
+        </h:head>
+
+        <h:body>
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <h:outputText value="${msg.toggleNavigation}" styleClass="sr-only" />
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <p:link styleClass="navbar-brand" href="#" value="${msg.valery}" />
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                            <p:link value="${msg.inicio}" href="/pages/index.jsf" />
+                            </li>
+                            <li>
+                            <p:link value="${msg.usuarios}" href="/pages/usuario.jsf" />
+                            </li>
+                            <li>
+                                <a href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+
+            <!-- Page Content -->
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <p:outputPanel style="padding: 15px;">
+
+                            <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+                            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" 
+                                      closable="false" resizable="false" header="${msg.procesando}">
+                                <p:graphicImage library="valery" name="img/ajaxloadingbar.gif" />
+                            </p:dialog>
+
+                            <ui:insert name="contenido" />
+                        </p:outputPanel>
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </h:body>
+    </f:view>
+</html>
+
